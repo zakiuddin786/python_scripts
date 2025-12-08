@@ -76,4 +76,3 @@ print(server_name.endswith("Zaki")) # check if the string starts or ends  using 
 print("Server name is ", server_name)
 updated_server_name = server_name.replace("Zaki", "Zakiuddin") # replace the word 
 print(f"Updated server name is {updated_server_name}")
-

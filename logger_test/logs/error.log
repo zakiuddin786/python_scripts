@@ -1,0 +1,4 @@
+2025-12-08 15:06:32 - [ERROR] - service.py.doing_something:8 - Trying to create an error
+2025-12-08 15:06:32 - [ERROR] - service.py.doing_something:12 - Zero division error occured while doing something
+2025-12-08 15:07:14 - [ERROR] - service.doing_something:8 - Trying to create an error
+2025-12-08 15:07:14 - [ERROR] - service.doing_something:12 - Zero division error occured while doing something

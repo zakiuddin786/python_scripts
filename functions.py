@@ -6,7 +6,7 @@ def greet_person(name):
     return message
 
 # name = input("What is your name?")
-name = "Zaki"
+name = "Zaki" # Global variable
 result = greet_person(name)
 print(result)
 
@@ -14,7 +14,8 @@ def print_server_status(hostname, status):
     """
     Takes the hostname and status as args and prints the status
     """
-    print(f"Status of {hostname} is {status}")
+    status_local = "Running" # local variable 
+    print(f"Status of {hostname} is {status} along with local it is {status_local}")
 
 print_server_status("webserver", "running")
 print_server_status("appserver", "stopped")
@@ -24,6 +25,7 @@ def caluculate_disk_usage_percentage(used_gb, total_gb):
     Takes the used gb and total gb information and computes the usage percentage
     """
     percentage = (used_gb/total_gb)*100
+    print(f" checking to access local status {status_local}")
     return percentage
 
 usage = caluculate_disk_usage_percentage(85,100)
@@ -54,6 +56,7 @@ def deploy_service(service_name, environment, region, version):
     Takes service_name, environment region and version as input and performs the deployment
     """
     print(f"Deploying {service_name} of {environment}, in region {region} with version {version}")
+    print(f"Hello {name}") # As name is a global variable we are able to access it in the function
 
 deploy_service("Frontend", "prod", "ap-south-1", "2.2.0")
 deploy_service("prod", "ap-south-1", "Frontend", "2.2.0")
