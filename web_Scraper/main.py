@@ -2,6 +2,8 @@ from logging_config import setup_logging
 from scrapper.fetcher import HttpFetcher
 from scrapper.parser import QuoteParser
 from storage.repository import CSVRepository
+from notifications.telegram import TelegramNotifier
+from config.settings import TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 
 from scrapper.pipeline import ScrapingPipeline
 
@@ -36,5 +38,11 @@ def main():
             break
     logger.info (f" Scrapping completed and scrapped {total_quotes}")
 
+    # Telegram notification
+    notifier = TelegramNotifier(bot_token=TELEGRAM_BOT_TOKEN,chat_id=TELEGRAM_CHAT_ID)
+
+    notifier.send_message(f" Scrapping Got completed Total scraped quote are {total_quotes} Telegram did you get notified?")
+
+    notifier.send_file(OUTPUT_FILE, caption="This is the data for scrapped quotes, please read it and get inspired")
 if __name__ == "__main__":
     main()
