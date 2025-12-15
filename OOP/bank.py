@@ -26,6 +26,7 @@ account1 = BankAccount('Zaki', 100)
 account2 = BankAccount("John", 1000000)
 account3 = BankAccount("Rahul", 1000)
 
+print(account1 is account2)
 account1.__balance = 100000000000000
 
 print(account1.withdraw(1000))
