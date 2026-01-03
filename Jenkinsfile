@@ -33,7 +33,7 @@ pipeline{
 
             }
         }
-        stage('Deploy') {
+        stage('Run the scraper') {
             steps {
                 script {
                     dir("${PROJECT_SUB_DIR}") {
@@ -49,11 +49,6 @@ pipeline{
                         '''
                     }
                 }
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
             }
         }
     }
