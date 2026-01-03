@@ -14,11 +14,11 @@ pipeline{
                     echo 'Setting up the environment with UV...'
                     sh 'curl -LsSf https://astral.sh/uv/install.sh | sh'
                     // Add the installation path to the PATH environment variable for subsequent steps
-                    sh 'export PATH="$HOME/.cargo/bin:$PATH"'
+                    sh 'export PATH="$HOME/.local/bin:$HOME/cargo/bin:$PATH"'
 
                     dir("${PROJECT_SUB_DIR}") {
                         echo 'Installing dependencies...'
-                        sh 'export PATH="$HOME/.cargo/bin:$PATH"'
+                        sh 'export PATH="$HOME/.local/bin:$HOME/cargo/bin:$PATH"'
 
                         sh 'uv sync'
                         echo "Dependencies installed."
