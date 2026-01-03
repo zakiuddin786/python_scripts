@@ -19,6 +19,7 @@ pipeline{
                     dir("${PROJECT_SUB_DIR}") {
                         echo 'Installing dependencies...'
                         sh 'export PATH="$HOME/.cargo/bin:$PATH"'
+                        
 
                         sh 'uv sync'
                         echo "Dependencies installed."
