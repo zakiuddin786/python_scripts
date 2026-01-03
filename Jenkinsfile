@@ -33,9 +33,22 @@ pipeline{
 
             }
         }
-        stage('Test') {
+        stage('Deploy') {
             steps {
-                echo 'Testing...'
+                script {
+                    dir("${PROJECT_SUB_DIR}") {
+                        sh '''
+                            echo "Current directory: $(pwd)"
+                            echo "Path: $PATH"
+
+                            echo 'Running the web scraper...'
+                            export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+
+                            uv run main.py
+                            echo "Web scraper executed."
+                        '''
+                    }
+                }
             }
         }
         stage('Deploy') {

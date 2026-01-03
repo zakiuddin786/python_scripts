@@ -41,7 +41,7 @@ def main():
     # Telegram notification
     notifier = TelegramNotifier(bot_token=TELEGRAM_BOT_TOKEN,chat_id=TELEGRAM_CHAT_ID)
 
-    notifier.send_message(f" Scrapping Got completed Total scraped quote are {total_quotes} Telegram did you get notified?")
+    notifier.send_message(f" Scrapping Got completed Total scraped quote are {total_quotes} Telegram did you get notified? sending from jenkins")
 
     notifier.send_file(OUTPUT_FILE, caption="This is the data for scrapped quotes, please read it and get inspired")
 if __name__ == "__main__":
