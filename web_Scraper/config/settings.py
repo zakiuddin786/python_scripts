@@ -1,2 +1,10 @@
-TELEGRAM_BOT_TOKEN = "XXXXXXXX:AAExxxxxxxxxxxxxxxxxas"
-TELEGRAM_CHAT_ID = "7xxxxxxxxx3"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
+
+if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+    raise ValueError("TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID must be set in the environment variables.")
