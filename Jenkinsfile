@@ -17,11 +17,17 @@ pipeline{
                     sh 'export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"'
 
                     dir("${PROJECT_SUB_DIR}") {
-                        echo 'Installing dependencies...'
-                        sh 'export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"'
+                        sh '''
+                            echo "Current directory: $(pwd)"
+                            echo "Path: $PATH"
 
-                        sh 'uv sync'
-                        echo "Dependencies installed."
+                            ls -la $HOME/.local/bin/uv
+                            echo 'Installing dependencies...'
+                            export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+
+                            uv sync
+                            echo "Dependencies installed."
+                        '''
                     }
                 }
 
