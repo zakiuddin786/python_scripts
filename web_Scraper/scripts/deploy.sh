@@ -23,7 +23,7 @@ if [ "$ACTION" == "deploy" ]; then
     echo "Deploying new version to $NEW_DEPLOY_DIR"
 
     mkdir -p "$NEW_DEPLOY_DIR"
-    rsync -a --exclude={'.git',"deployments",".venv", "__pycache__"} ./ "$NEW_DEPLOY_DIR/"
+    rsync -a --exclude={'.git',"deployments",".venv"} ../ "$NEW_DEPLOY_DIR/"
 
     update_link "$NEW_DEPLOY_DIR"
     echo "Deployment completed successfully."
