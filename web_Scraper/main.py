@@ -61,8 +61,8 @@ def main():
             if count == 0:
                 break
             total_quotes += count
-            page +=1
-
+            page +=
+            
         except Exception as e:
             logger.error(f"Stopping the scrapping operation due to {e}")
             break
