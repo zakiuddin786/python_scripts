@@ -79,7 +79,7 @@ pipeline{
             dir("${PROJECT_SUB_DIR}") {
                 echo 'Pipeline failed. Sending notification...'
                 sh '''
-                    curl -s -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=$TELEGRAM_CHAT_ID -d text="Jenkins Pipeline Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}. Please check the Jenkins console for details."
+                    curl -s -X POST https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage -d chat_id=$TELEGRAM_CHAT_ID -d text="Jenkins Pipeline Failed. Please check the Jenkins console for details."
                 '''
                  echo "Initiating the rollback for build ${env.BUILD_NUMBER}"
                 sh 'chmod 755 ./scripts/deploy.sh'
