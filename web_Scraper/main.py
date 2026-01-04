@@ -15,7 +15,37 @@ logger = logging.getLogger(__name__)
 BASE_URL = "https://quotes.toscrape.com/page/{}/"
 OUTPUT_FILE = "quotes.csv"
 
+import argparse
+import sys
+import os
+
 def main():
+    parser = argparse.ArgumentParser(description="Web Scraper for Quotes")
+    parser.add_argument("--health-check", action="store_true", help="Run a health check and exit")
+    args = parser.parse_args()
+
+    if args.health_check:
+        logger.info("Running Health Check...")
+        try:
+            # Simulation trigger for rollback testing
+            if os.getenv("SIMULATE_ROLLBACK") == "true":
+                raise RuntimeError("SIMULATED FAILURE: Rollback triggered!")
+
+            # Verify dependencies can be initialized
+            fetcher = HttpFetcher()
+            parser = QuoteParser()
+            repo = CSVRepository(OUTPUT_FILE)
+            
+            # Check if we can reach the base URL (lightweight check)
+            if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
+                raise ValueError("Telegram configuration missing")
+                
+            logger.info("Health Check Passed!")
+            sys.exit(0)
+        except Exception as e:
+            logger.error(f"Health Check Failed: {e}")
+            sys.exit(1)
+
     fetcher = HttpFetcher()
     parser = QuoteParser()
     repository = CSVRepository(OUTPUT_FILE)

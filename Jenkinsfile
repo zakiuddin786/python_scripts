@@ -33,6 +33,22 @@ pipeline{
 
             }
         }
+
+        stage("Deploy") {
+            steps {
+                echo 'Starting the deployment process...'
+                script{
+                    dir("${PROJECT_SUB_DIR}") {
+                        sh '''
+                            echo "Deploying the build number ${env.BUILD_NUMBER}"
+                            sh "./scripts/deploy.sh deploy ${env.BUILD_NUMBER}"
+                            echo "Deployment completed."
+                        '''
+                    }
+                }
+                // Add deployment steps here if needed
+            }
+        }
         stage('Run the scraper') {
             steps {
                 script {
