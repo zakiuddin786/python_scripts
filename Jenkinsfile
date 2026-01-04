@@ -40,6 +40,7 @@ pipeline{
                 script{
                     dir("${PROJECT_SUB_DIR}") {
                         echo "Deploying the build number ${env.BUILD_NUMBER}"
+                        sh chmod +x ./scripts/deploy.sh
                         sh "./scripts/deploy.sh deploy ${env.BUILD_NUMBER} "
                         echo "Deployment completed."
                     }
