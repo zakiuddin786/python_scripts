@@ -54,7 +54,7 @@ def main():
     page = 1
     total_quotes = 0
 
-    while True:
+    while True
         url = BASE_URL.format(page)
         try:
             count = pipeline.run(url)

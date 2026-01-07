@@ -48,3 +48,19 @@ jobs:
       run: |
         uv run main.py
       working-directory: ${{ env.PROJECT_SUB_DIR }}
+
+    - name: Handle Failures
+      if: failure()
+      env: 
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        BUILD_NUMBER: ${{ github.run_number }}
+
+      run: |
+        curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+        -d chat_id="${TELEGRAM_CHAT_ID}" \
+        -d text="Deployment Failed for Build #${BUILD_NUMBER} in repository "
+
+        chmod +x scripts/deploy.sh
+        ./scripts/deploy.sh rollback $BUILD_NUMBER
+      working-directory: ${{ env.PROJECT_SUB_DIR }}
